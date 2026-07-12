@@ -72,16 +72,12 @@
 
     @media (max-width: 390px) {
       #aq-auth-logo {
-        width: 120px; /*ปรับความกว้างในมือถือ*/
-      }
-      #aq-auth-overlay {
-        width: 120px;
+        font-size: 30px;
       }
       #aq-auth-card {
-        width: 120px;
+        padding: 10px 10px;
       }
     }
-
     
     /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {

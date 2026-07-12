@@ -52,7 +52,7 @@
   style.textContent = `
     #aq-auth-overlay {
       position: fixed; inset: 0; z-index: 99999;
-      background: #0f172a;
+      background: #0f172a; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
     }
@@ -79,7 +79,7 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 6px; top: 5px;
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
       width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
@@ -323,9 +323,11 @@
         return;
       }
       buildBadge(user);
+      document.body.style.overflow = '';
       if (!firedOnce) { firedOnce = true; fireReady(); }
     } else {
       if (!overlayEl) overlayEl = buildOverlay();
+      document.body.style.overflow = 'hidden';
       if (!firedOnce) { firedOnce = true; fireReady(); }
       // Note: firing 'ready' even when logged out lets the app fall back
       // to local storage behind the overlay, so nothing hangs forever if

@@ -38,6 +38,7 @@
   if (typeof window === 'undefined') return;
 
   function fireReady() {
+    window.__aquariumAuthReady = true;
     window.dispatchEvent(new CustomEvent('aquarium-auth-ready'));
   }
 
@@ -224,7 +225,15 @@
     if (existingBadge) existingBadge.remove();
 
     if (user) {
-      if (overlayEl) { overlayEl.remove(); overlayEl = null; }
+      if (overlayEl) {
+        // We were showing the login screen (meaning init() already ran once
+        // against local/offline data, if 'ready' had fired while logged
+        // out). Reload so app.js's init() runs fresh against this
+        // authenticated session and pulls the real synced data, instead of
+        // leaving the offline data rendered on screen.
+        location.reload();
+        return;
+      }
       buildBadge(user);
       if (!firedOnce) { firedOnce = true; fireReady(); }
     } else {

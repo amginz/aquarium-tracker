@@ -149,7 +149,7 @@
       cursor: pointer; padding: 0; font-weight: 600;
     }
     #aq-auth-card input::placeholder {
-      color: #434a54;
+      color: #3d4859;
     }
   `;
   document.head.appendChild(style);

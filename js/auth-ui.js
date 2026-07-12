@@ -75,7 +75,7 @@
       position: absolute; right: 6px; top: 50%;
       width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; justify-content: center;
       cursor: pointer; opacity: .7;
     }
     #aq-pass-toggle:hover { opacity: 1; }
@@ -83,7 +83,7 @@
     #aq-forgot-link {
       background: none !important; width: 100% !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
-      text-decoration: underline; cursor: pointer; margin: 0 !important;
+      text-decoration: underline; cursor: pointer; margin: 0 0 2px !important;
       display: block; text-align: right !important;
     }
     #aq-forgot-link:hover { color: #cbd5e1 !important; }

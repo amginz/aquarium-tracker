@@ -60,13 +60,13 @@
   style.textContent = `
     #aq-auth-logo {
       position: fixed;
-      top: 40px;           /* ระยะห่างจากขอบบนสุดของจอ */
+      top: 100px;           /* ระยะห่างจากขอบบนสุดของจอ */
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
    }
     #aq-auth-logo span {
-      font-size: 24px; font-weight: 500; color: #e2e8f0; letter-spacing: .2px;
+      font-size: 100px; font-weight: 500; color: #e2e8f0; letter-spacing: .2px;
    }
 #aq-auth-logo span b { color: #38bdf8; font-weight: 700; }
     

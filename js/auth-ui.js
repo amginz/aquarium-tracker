@@ -72,7 +72,7 @@
 
     @media (max-width: 390px) {
       #aq-auth-logo span {
-        font-size: 60px;
+        font-size: 40px;
       }
       #aq-auth-card {
         padding: 10px 10px;
@@ -93,8 +93,8 @@
       color: #e2e8f0;
     }
     
-    #aq-auth-card h1 { font-size: 22px; align-items: center; margin: 0 0 4px; color: #f8fafc; }
-    #aq-auth-card p.sub { font-size: 16px; align-items: center; color: #94a3b8; margin: 0 0 14px; }
+    #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
+    #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 14px; }
 
     /* ---- Shared font-family for all form elements ---- */
     #aq-auth-card input,

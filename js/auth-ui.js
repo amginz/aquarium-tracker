@@ -54,7 +54,7 @@
       position: fixed; inset: 0; z-index: 99999;
       background: #0f172a;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: 'Prompt', system-ui, -apple-system,;
     }
     #aq-auth-card {
       width: 100%; max-width: 340px; background: #1e293b;

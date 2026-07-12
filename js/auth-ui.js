@@ -94,7 +94,7 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 6px; top: 40%; transform: translateY(-60%);
+      position: absolute; right: 6px; top: 45%; transform: translateY(-55%);
       width: 32px !important; height: 28px; margin: 0 !important;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;

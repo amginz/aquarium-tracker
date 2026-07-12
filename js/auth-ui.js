@@ -58,6 +58,18 @@
 
   const style = document.createElement('style');
   style.textContent = `
+    #aq-auth-logo {
+      position: fixed;
+      top: 40px;           /* ระยะห่างจากขอบบนสุดของจอ */
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+   }
+    #aq-auth-logo span {
+      font-size: 24px; font-weight: 500; color: #e2e8f0; letter-spacing: .2px;
+   }
+#aq-auth-logo span b { color: #38bdf8; font-weight: 700; }
+    
     /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {
       position: fixed; inset: 0; z-index: 99999;
@@ -70,13 +82,7 @@
       border-radius: 16px; padding: 28px 30px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
       color: #e2e8f0;
     }
-    #aq-auth-logo {
-      display: flex; align-items: center; margin-bottom: 18px;
-    }
-    #aq-auth-logo span {
-      font-size: 20px; font-weight: 500; color: #e2e8f0; letter-spacing: .2px;
-    }
-    #aq-auth-logo span b { color: #38bdf8; font-weight: 700; }
+    
 
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
     #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 14px; }

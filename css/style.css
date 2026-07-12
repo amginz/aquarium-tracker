@@ -25,7 +25,10 @@
   margin: 0;
   padding: 0;
 }
-
+body {
+  margin: 0;
+  padding: 0;
+}
 :root {
   --bg: #080e15;
   --bg1: #0e1620;

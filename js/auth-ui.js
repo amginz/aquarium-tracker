@@ -73,7 +73,7 @@
     @media (max-width: 390px) {
       #aq-auth-logo span {
         font-size: 40px;
-        top: 55px;
+        top: 35px;
       }
       #aq-auth-overlay {
         padding: 40px 40px;

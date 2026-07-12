@@ -64,11 +64,12 @@
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
+      padding: 20px 20px;
    }
     #aq-auth-logo span {
-      font-size: 80px; font-weight: 500; color: #e9f2f6; letter-spacing: .2px;
+      font-size: 60px; font-weight: 400; color: #e9f2f6; letter-spacing: .2px;
    }
-#aq-auth-logo span b { color: #22d3ee; font-weight: 700; }
+#aq-auth-logo span b { color: #22d3ee; font-weight: 800; }
     
     /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {

@@ -61,8 +61,8 @@
       border-radius: 16px; padding: 28px 30px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
       color: #e2e8f0;
     }
-    #aq-auth-card h1 { font-size: 18px; margin: 0 0 4px; color: #f8fafc; }
-    #aq-auth-card p.sub { font-size: 13px; color: #94a3b8; margin: 0 0 20px; }
+    #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
+    #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 20px; }
     #aq-auth-card input,
     #aq-auth-card button,
     #aq-auth-card input::placeholder,

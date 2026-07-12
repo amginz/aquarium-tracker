@@ -1,0 +1,1587 @@
+/* ============================================================
+   TABLE OF CONTENTS
+   1. Reset & theme tokens
+   2. Base / scrollbar
+   3. Header & tabs
+   4. Mobile layout overrides (max-width:600px, then max-width:520px)
+   5. Card shell
+   6. Tank info panel
+   7. Fish / plant rows (shared pattern)
+   8. Light card (channels, sliders, on/off time)
+   9. Filter card
+   10. CO2 card
+   11. Form fields (text/number/date/select) + calculator card
+   12. Fertilizer card
+   13. Save bar / delete tank
+   ============================================================ */
+
+/* ============================================================
+   1. RESET & THEME TOKENS
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080e15;
+  --bg1: #0e1620;
+  --bg2: #131d29;
+  --bg3: #1b2735;
+  --border: #22303f;
+  --border2: #2c3d4f;
+  --text: #e9f2f6;
+  --text2: #84969f;
+  --text3: #4c5f6a;
+
+  /* primary accent = sea / ocean blue */
+  --accent: #22d3ee;
+  --accent-rgb: 34, 211, 238;
+  --accent-hover: #5fe4f5;
+
+  /* light-channel legend colors (kept true to W/R/G/B/UV meaning) */
+  --r: #e05050;
+  --g: #45c45a;
+  --b: #4488ff;
+  --w: #f5d633;
+  --uv: #a855f7;
+
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 14px;
+}
+
+.app-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 60px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg)
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 2px
+}
+
+/* ============================================================
+   HEADER & TABS
+   ============================================================ */
+.header {
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+.logo {
+  font-family: 'Prompt', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0em;
+  font-weight: 800;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.clock {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--text2);
+  letter-spacing: 0em;
+}
+
+.tabs-bar {
+  padding: 4.5rem 2rem 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.tank-tab {
+  font-family: 'Prompt', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0em;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 14px 9px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid transparent;
+  border-color: var(--border);
+  border-bottom: none;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: -1px;
+  position: relative;
+}
+
+.tank-tab:hover {
+  color: var(--text3);
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+.tank-tab.active {
+  background: var(--bg1);
+  color: var(--text);
+  border-color: var(--border);
+  border-bottom-color: var(--bg1);
+}
+
+.tab-name {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  min-width: 48px;
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-name-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--accent);
+  outline: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  cursor: text;
+  min-width: 48px;
+  max-width: 110px;
+}
+
+.tab-close {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.tab-close:hover {
+  background: rgba(224, 80, 80, 0.18);
+  color: var(--r);
+}
+
+.tab-edit {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.tab-edit:hover {
+  background: rgba(var(--accent-rgb), 0.15);
+  color: var(--accent);
+}
+
+.btn-add-tank {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  padding: 8px 14px 9px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px dashed var(--border2);
+  border-bottom: none;
+  background: transparent;
+  color: var(--text3);
+  cursor: pointer;
+  margin-bottom: -1px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.18s;
+}
+
+.btn-add-tank:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.06);
+}
+
+.main {
+  padding: 0rem 1rem 4rem;
+  margin-top: 80px;
+  max-width: 900px;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE OVERRIDES
+   ============================================================ */
+@media(max-width:600px) {
+
+  /* -- ฐานตัวอักษร / ระยะบรรทัด: กระชับลงจาก desktop -- */
+  html {
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin-bottom: 24px;
+  }
+
+  /* -- Header -- */
+  .header {}
+  .logo {}
+  .clock {}
+
+  /* -- แถบแท็บตู้ปลา: เลื่อนแนวนอน ไม่ตกบรรทัด -- */
+  .tabs-bar {
+    padding: 4.5rem 1rem 0rem;
+    gap: 2px;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tank-tab{
+    flex-wrap: nowrap;
+  }
+
+  .btn-add-tank {
+    flex-wrap: nowrap;
+  }
+
+  .main {
+    padding: 0.85rem 0.85rem 2.5rem;
+    margin-top:42px;
+  }
+
+  /* -- การ์ด: ลด padding และระยะห่างระหว่างการ์ด -- */
+  .card {
+    padding: 0.9rem;
+    margin-bottom: 0.65rem;
+    border-radius: 12px;
+  }
+
+  .card-header {
+    gap: 8px;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .card.no-pad .card-header {
+    padding: 0.9rem 0.9rem 0.75rem;
+  }
+
+  .card-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+    border-radius: 7px;
+  }
+
+  .card-title {
+    font-size: 13px;
+  }
+
+  .card-sub {
+    font-size: 12px;
+  }
+
+  /* -- แผงข้อมูลตู้ (อุณหภูมิ + สถิติสรุป) -- */
+  .tankinfo-wrap {
+    padding: 0.9rem;
+  }
+
+  .tankinfo-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .temp-control {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .temp-label,
+  .temp-val,
+  .temp-val span {
+    font-size: 13px;
+  }
+
+  .temp-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* สถิติสรุป: จัดเป็นตารางกริดกระชับ แทนป้ายที่อาจล้นบรรทัด */
+  .mv-stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .mv-stat {
+    padding: 6px 10px;
+    font-size: 12.5px;
+    justify-content: flex-start;
+  }
+
+  /* -- แถวปลา/พันธุ์ไม้น้ำ -- */
+  .fish-row {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .fish-row input[type=text] {
+    font-size: 13px;
+  }
+
+  .count-btn,
+  .btn-remove {
+    width: 22px;
+    height: 22px;
+  }
+
+  .count-val,
+  .count-unit {
+    font-size: 13px;
+  }
+
+  .btn-add-item {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .fish-tag {
+    font-size: 12px;
+    padding: 3px 9px;
+  }
+
+  .empty-hint {
+    font-size: 13px;
+  }
+
+  /* -- ไฟ / ตารางเวลา -- */
+  .light-channels {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .ch-name,
+  .ch-val {
+    font-size: 12.5px;
+  }
+
+  .time-row {
+    gap: 4px;
+    padding: 9px 10px;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .time-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .time-group {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .time-label {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .time-sep {
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  input[type=time] {
+    font-size: 12.5px;
+    padding: 6px 6px;
+    flex-shrink: 0;
+  }
+
+  .duration-badge {
+    margin-left: 0;
+    flex-shrink: 0;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 11.5px;
+    padding: 4px 8px;
+  }
+
+  /* -- ฟิลด์กรอกข้อมูล (กรอง / คำนวณ): จัด label + ช่องกรอก ให้อยู่บรรทัดเดียวกัน อ่านง่ายขึ้น -- */
+  .light-channels,
+  .filter-grid,
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    flex-direction: row;
+    align-items: left;
+    gap: 10px;
+  }
+
+  .field label {
+    font-size: 12px;
+    flex: 0 0 34%;
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+
+  .field input[type=text],
+  .field input[type=date],
+  .field input[type=number],
+  .field select {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  .calc-sub-title {
+    font-size: 12px;
+  }
+
+  .calc-grid {
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .calc-result {
+    padding: 11px 13px;
+  }
+
+  .calc-result .lbl,
+  .calc-result .num,
+  .calc-result .unit {
+    font-size: 13px;
+  }
+
+  .calc-divider {
+    margin: 1rem 0 0.85rem;
+    padding-top: 0.9rem;
+  }
+
+  .next-clean {
+    font-size: 12.5px;
+    padding: 8px 12px;
+  }
+
+  /* -- ตัวกรองน้ำ -- */
+  .filter-item {
+    padding: 10px;
+  }
+
+  .filter-cat-select {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  /* -- CO2 -- */
+  .co2-toggle-row {
+    padding: 8px 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .co2-toggle-label {
+    font-size: 13px;
+  }
+
+  .bpm-val {
+    font-size: 13px;
+  }
+
+  /* -- ตารางปุ๋ย -- */
+  .fert-row {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .fert-day,
+  .fert-unit,
+  .fert-name,
+  .fert-amt {
+    font-size: 13px;
+  }
+
+  .fert-amt-wrap {
+    flex-wrap: nowrap;
+  }
+
+  .fert-amt {
+    width: 34px;
+  }
+}
+
+/* -- Extra-narrow phones: collapse remaining 2/3-column grids to 1 column -- */
+@media(max-width:520px) {
+  .main {
+    padding: 0.85rem 0.85rem 2.5rem;
+    margin-top: 82px;
+    margin-bottom: 24px;
+  }
+  .light-channels,
+  .filter-grid,
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field input[type=date] {
+    padding: 7px 8px;
+    font-size: 12.5px;
+  }
+}
+
+/* ============================================================
+   CARD SHELL
+   ============================================================ */
+.card {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.25s ease both;
+}
+
+.card.no-pad {
+  padding: 0;
+  overflow: hidden;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.card:nth-child(1) {
+  animation-delay: .04s
+}
+
+.card:nth-child(2) {
+  animation-delay: .08s
+}
+
+.card:nth-child(3) {
+  animation-delay: .12s
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card.no-pad .card-header {
+  margin: 0;
+  padding: 1.25rem 1.5rem 1rem;
+}
+
+.card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.card-sub {
+  margin-right: auto;
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0em;
+}
+
+/* ============================================================
+   TANK INFO PANEL (compact summary + editable temperature)
+   ============================================================ */
+.tankinfo-wrap {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.tankinfo-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.temp-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.temp-label {
+  font-size: 15px;
+  color: var(--text2);
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0em;
+}
+
+.temp-val-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.temp-val {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  min-width: 66px;
+  text-align: center;
+}
+
+.temp-val span {
+  font-size: 15px;
+  color: var(--text2);
+  margin-left: 2px;
+}
+
+.temp-val.temp-warn {
+  color: var(--r);
+}
+
+.temp-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.temp-btn:hover {
+  background: var(--border2);
+  color: var(--text);
+}
+
+.mv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mv-stat {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 15px;
+  color: var(--text2);
+  font-family: 'Prompt', sans-serif;
+}
+
+.mv-stat b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.mv-stat.on {
+  border-color: rgba(var(--accent-rgb), 0.35);
+  color: var(--accent);
+}
+
+.mv-stat.warn {
+  border-color: rgba(224, 80, 80, 0.35);
+  color: var(--r);
+}
+
+/* ============================================================
+   FISH / PLANT ROWS (shared pattern)
+   ============================================================ */
+.fish-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fish-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+  max-width: 100%;
+}
+
+.fish-row:focus-within {
+  border-color: var(--border2);
+}
+
+.row-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.row-dot.plant {
+  background: var(--g);
+}
+
+.fish-row input[type=text] {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+}
+
+.fish-row input[type=text]::placeholder {
+  color: var(--text3);
+}
+
+.fish-count-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.count-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.count-btn:hover {
+  background: var(--border2);
+  color: var(--text);
+}
+
+.count-val {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  min-width: 24px;
+  text-align: center;
+}
+
+.count-unit {
+  font-size: 15px;
+  color: var(--text3);
+}
+
+.btn-remove {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text3);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.btn-remove:hover {
+  background: rgba(224, 80, 80, 0.12);
+  color: var(--r);
+  border-color: rgba(224, 80, 80, 0.3);
+}
+
+.btn-add-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: transparent;
+  border: 1px dashed var(--border2);
+  color: var(--text3);
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Prompt', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-add-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fish-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.fish-tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  font-size: 15px;
+  color: var(--text2);
+  font-family: 'Prompt', sans-serif;
+}
+
+.fish-tag.total {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fish-tag.total.plant {
+  border-color: var(--g);
+  color: var(--g);
+}
+
+.empty-hint {
+  font-size: 15px;
+  color: var(--text3);
+  padding: 6px 2px 12px;
+}
+
+/* ============================================================
+   LIGHT CARD
+   ============================================================ */
+.light-channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ch-name {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--text3);
+  letter-spacing: 0em;
+  font-weight: 400;
+}
+
+.ch-val {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  /* color of the filled portion of the track; each slider sets --track-color inline (defaults to accent) */
+  background: linear-gradient(to right, var(--track-color, var(--accent)) var(--pct), var(--bg3) var(--pct));
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text);
+  border: 2px solid var(--bg);
+  cursor: pointer;
+}
+
+.color-w {
+  color: var(--w)
+}
+
+.color-r {
+  color: var(--r)
+}
+
+.color-g {
+  color: var(--g)
+}
+
+.color-b {
+  color: var(--b)
+}
+
+.color-uv {
+  color: var(--uv)
+}
+
+.light-bar-wrap {
+  display: flex;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  gap: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.lb {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+}
+
+.time-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.time-label {
+  font-size: 15px;
+  color: var(--accent);
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0em;
+}
+
+input[type=time] {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 12px;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type=time]:focus {
+  border-color: var(--accent);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.time-sep {
+  color: var(--text3);
+  font-size: 15px;
+}
+
+.duration-badge {
+  margin-left: auto;
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+}
+
+/* ============================================================
+   FILTER CARD
+   ============================================================ */
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 15px;
+  color: var(--text3);
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+.field input[type=text],
+.field input[type=number],
+.field select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.field input[type=date] {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.field input[type=date]:focus {
+  border-color: var(--accent);
+}
+
+.field input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.field input[type=date]::-webkit-datetime-edit {
+  color: var(--text);
+}
+
+.field input[type=number] {
+  font-family: 'Prompt', sans-serif;
+  -moz-appearance: textfield;
+}
+
+.field input[type=number]::-webkit-outer-spin-button,
+.field input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.field input::placeholder {
+  color: var(--text3);
+  opacity: 1;
+}
+
+/* ============================================================
+   WATER VOLUME / FERTILIZER CALCULATOR CARD
+   ============================================================ */
+.calc-sub-title {
+  font-size: 15px;
+  color: var(--text3);
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.calc-result {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  border-radius: var(--radius);
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.calc-result .lbl {
+  font-size: 15px;
+  color: var(--text2);
+  margin-right: auto;
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0em;
+}
+
+.calc-result .num {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.calc-result .unit {
+  font-size: 15px;
+  color: var(--text2);
+}
+
+.calc-divider {
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0 1rem;
+  padding-top: 1.1rem;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+}
+
+.next-clean {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  border-radius: var(--radius);
+  font-size: 15px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.next-clean strong {
+  color: var(--accent);
+  font-family: 'Prompt', sans-serif;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.filter-item {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.filter-item-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.filter-cat-select {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  color: var(--accent);
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.filter-cat-select.pre {
+  border-color: rgba(var(--accent-rgb), 0.4);
+  color: var(--accent);
+}
+
+/* ============================================================
+   CO2 CARD
+   ============================================================ */
+.co2-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.co2-toggle-label {
+  font-size: 15px;
+  color: var(--text2);
+}
+
+.switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.switch-track {
+  position: absolute;
+  inset: 0;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.switch-track::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 2px;
+  background: var(--text2);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.switch input:checked+.switch-track {
+  background: rgba(var(--accent-rgb), 0.18);
+  border-color: var(--accent);
+}
+
+.switch input:checked+.switch-track::before {
+  transform: translateX(18px);
+  background: var(--accent);
+}
+
+.co2-body {
+  transition: opacity 0.2s;
+}
+
+.co2-body.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bpm-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.bpm-val {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  min-width: 110px;
+}
+
+.bpm-val span {
+  font-size: 15px;
+  color: var(--text3);
+}
+
+/* ============================================================
+   FERTILIZER CARD
+   ============================================================ */
+.fert-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fert-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  flex-wrap: wrap;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.fert-row:focus-within {
+  border-color: var(--border2);
+}
+
+.fert-day,
+.fert-unit {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+}
+
+.fert-day:focus,
+.fert-unit:focus {
+  border-color: var(--accent);
+}
+
+.fert-name {
+  flex: 1;
+  min-width: 90px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+}
+
+.fert-name::placeholder {
+  color: var(--text3);
+}
+
+.fert-amt-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.fert-amt {
+  width: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.fert-amt::-webkit-outer-spin-button,
+.fert-amt::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.fert-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+/* ============================================================
+   SAVE BAR / DELETE
+   ============================================================ */
+.save-bar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 1rem 1rem;
+  z-index: 99;
+}
+
+.save-bar-tank-name {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--accent);}
+
+.btn-save {
+  padding: 10px 24px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  border: none;
+  color: #04222b;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Prompt', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-save:active {
+  transform: translateY(0);
+}
+
+.btn-del-tank {
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  background: transparent;
+  border: 1px solid rgba(224, 80, 80, 0.25);
+  color: rgba(224, 80, 80, 0.6);
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Prompt', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-del-tank:hover {
+  background: rgba(224, 80, 80, 0.1);
+  color: var(--r);
+  border-color: var(--r);
+}

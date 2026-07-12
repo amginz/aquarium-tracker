@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquarium Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrap">
+  <div class="header">
+    <div class="logo">Aqua<span>Track</span></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+
+  <div class="tabs-bar" id="tabs-bar"></div>
+  <div class="main" id="main-content"></div>
+</div>
+
+<!-- Optional cloud sync. Harmless no-op if js/supabase-config.js is left blank. -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<!-- Order matters: each file below may use functions/consts defined
+     in the ones before it (plain <script> tags, no bundler needed). -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/state.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/tankInfo.js"></script>
+<script src="js/species.js"></script>
+<script src="js/light.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/co2.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/fertilizer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

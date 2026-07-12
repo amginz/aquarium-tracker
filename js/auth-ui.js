@@ -67,7 +67,7 @@
     }
     #aq-auth-card {
       width: 100%; max-width: 400px; background: #1e293b;
-      border-radius: 16px; padding-top: 20px; padding-bottom: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      border-radius: 16px; padding: 28px 30px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
       color: #e2e8f0;
     }
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
@@ -94,14 +94,14 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 6px; top: 50%; transform: translateY(-20%);
-      width: 32px !important; height: 35px; margin: 0 !important;
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      width: 32px !important; height: 28px; margin: 0 !important;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; opacity: .7;
     }
     #aq-pass-toggle:hover { opacity: 1; }
-    #aq-pass-toggle svg { width: 22px; height: 22px; }
+    #aq-pass-toggle svg { width: 18px; height: 18px; }
 
     /* ---- Forgot-password link (right-aligned, needs full width first) ---- */
     #aq-forgot-link {

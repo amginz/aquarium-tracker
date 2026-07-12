@@ -54,7 +54,7 @@
       position: fixed; inset: 0; z-index: 99999;
       background: #0f172a;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Prompt';
+      font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
     }
     #aq-auth-card {
       width: 100%; max-width: 340px; background: #1e293b;
@@ -103,7 +103,7 @@
     #aq-auth-msg.ok { color: #4ade80; }
     #aq-account-badge {
       position: fixed; top: 10px; right: 10px; z-index: 9998;
-      background: #1e293b; color: #cbd5e1; font-family: 'Prompt';
+      background: #1e293b; color: #cbd5e1; font-family: 'Prompt', system-ui, sans-serif;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }

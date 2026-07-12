@@ -148,6 +148,9 @@
       background: none; border: none; color: #38bdf8; font-size: 12px;
       cursor: pointer; padding: 0; font-weight: 600;
     }
+    #aq-auth-card input::placeholder {
+      color: #94a3b8;
+    }
   `;
   document.head.appendChild(style);
 

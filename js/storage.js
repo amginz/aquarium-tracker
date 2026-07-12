@@ -83,9 +83,11 @@ async function saveState() {
     }
     return true;
   } catch (err) {
-    console.error('บันทึกข้อมูลไม่สำเร็จ:', err);
-    return false;
-  }
+  // แก้ไขเป็น 2 บรรทัดนี้ เพื่อบีบให้เบราว์เซอร์กาง Object ออกมาดูแบบละเอียด
+  console.error('บันทึกข้อมูลไม่สำเร็จ (Error Object):', err);
+  console.error('เหตุผลจาก Supabase:', err.message || JSON.stringify(err));
+  return false;
+}
 }
 
 async function loadState() {

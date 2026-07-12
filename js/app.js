@@ -54,8 +54,22 @@ function tick() {
 setInterval(tick, 1000);
 tick();
 
-(async function init() {
+async function init() {
   await loadState();
   renderTabs();
   render();
-})();
+}
+
+// auth-ui.js checks (in this order): is Supabase configured at all? if not,
+// it fires 'aquarium-auth-ready' immediately. If it IS configured, it waits
+// until we know whether the visitor is logged in (shows a login screen if
+// not) before firing. Either way, by the time this event fires it's safe
+// to call loadState() - it'll correctly use Supabase (if logged in) or the
+// local/artifact fallback (if not), instead of racing ahead and loading
+// the wrong data.
+if (window.__aquariumAuthReady) {
+  // auth-ui.js already resolved before this script ran - don't miss the event.
+  init();
+} else {
+  window.addEventListener('aquarium-auth-ready', init, { once: true });
+}

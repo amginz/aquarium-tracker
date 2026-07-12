@@ -169,7 +169,7 @@
     overlay.id = 'aq-auth-overlay';
     overlay.innerHTML = `
       <div id="aq-auth-logo">
-        <span>Aqua<b>Track</b></span>
+        <span>AQUA<b>TRACK</b></span>
       </div>
       </div> 
       <div id="aq-auth-card">

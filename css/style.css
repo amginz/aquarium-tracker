@@ -70,7 +70,7 @@ body {
 .app-wrap {
   max-width: 960px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: 50px;
   overflow-x: hidden;
 }
 
@@ -91,7 +91,7 @@ body {
    HEADER & TABS
    ============================================================ */
 .header {
-  padding: 1.25rem 2rem;
+  padding: 0rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

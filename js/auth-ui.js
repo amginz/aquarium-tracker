@@ -94,14 +94,22 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 6px; top: 15%;
-      width: 32px !important; height: 35px; margin: 0 !important;
+      position: absolute; 
+      right: 6px; 
+      top: 0;                /* 1. ยึดขอบบนสุด */
+      bottom: 0;             /* 2. ยึดขอบล่างสุด เพื่อบังคับให้ความสูงยืดเต็มช่องรหัสผ่าน */
+      width: 36px !important; 
+      height: auto !important; /* 3. ล้างความสูงเดิม ปล่อยให้ยืดตามกรอบอัตโนมัติ */
+      margin: 0 !important;
       background: none !important; border: none; padding: 0 !important;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: .7;
+      display: flex; 
+      align-items: center;   /* 4. ปล่อยให้มันจัดกึ่งกลางแนวตั้งด้วย Flexbox แทน */
+      justify-content: center;
+      cursor: pointer; 
+      opacity: .7;
     }
     #aq-pass-toggle:hover { opacity: 1; }
-    #aq-pass-toggle svg { width: 18px; height: 18px; }
+    #aq-pass-toggle svg { width: 22px; height: 22px; }
 
     /* ---- Forgot-password link (right-aligned, needs full width first) ---- */
     #aq-forgot-link {

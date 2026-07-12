@@ -81,7 +81,7 @@
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }
     #aq-forgot-link {
-      background: none !important; width: auto !important; padding: 0 !important;
+      background: none !important; width: 100% !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
       text-decoration: underline; cursor: pointer; margin: 8px 0 0 !important;
       display: block; text-align: right !important;

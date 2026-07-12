@@ -60,16 +60,15 @@
   style.textContent = `
     #aq-auth-logo {
       position: fixed;
-      top: 85px;           /* ระยะห่างจากขอบบนสุดของจอ */
+      top: 95px;           /* ระยะห่างจากขอบบนสุดของจอ */
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
-      padding: 20px 20px;
    }
     #aq-auth-logo span {
-      font-size: 60px; font-weight: 400; color: #e9f2f6; letter-spacing: .2px;
+      font-size: 60px; font-weight: 800; color: #e9f2f6; letter-spacing: .2px;
    }
-#aq-auth-logo span b { color: #22d3ee; font-weight: 800; }
+#aq-auth-logo span b { color: #22d3ee; font-weight: 400; }
     
     /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {

@@ -149,7 +149,7 @@
       cursor: pointer; padding: 0; font-weight: 600;
     }
     #aq-auth-card input::placeholder {
-      color: #3d4859;
+      color: #334155;
     }
   `;
   document.head.appendChild(style);
@@ -222,13 +222,13 @@
 
       if (mode === 'signup') {
         title.textContent = 'สมัครสมาชิก';
-        sub.textContent = 'สร้างบัญชีเพื่อเริ่มซิงก์ข้อมูลข้ามอุปกรณ์';
+        sub.textContent = 'สร้างบัญชีเพื่อเริ่มโลกใบใหม่';
         submitBtn.textContent = 'สมัครสมาชิก';
         toggleBtn.textContent = 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ';
         passEl.setAttribute('autocomplete', 'new-password');
       } else {
         title.textContent = 'เข้าสู่ระบบ';
-        sub.textContent = 'ล็อกอินเพื่อซิงก์ข้อมูลตู้ปลาข้ามอุปกรณ์';
+        sub.textContent = 'ล็อกอินเข้าสู่โลกกว้าง';
         submitBtn.textContent = 'เข้าสู่ระบบ';
         toggleBtn.textContent = 'ยังไม่มีบัญชี? สมัครสมาชิก';
         passEl.setAttribute('autocomplete', 'current-password');

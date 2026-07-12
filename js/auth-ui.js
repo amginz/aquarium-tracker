@@ -69,6 +69,24 @@
       font-size: 14px;
     }
     #aq-auth-card input:focus { outline: none; border-color: #38bdf8; }
+    #aq-pass-wrap { position: relative; }
+    #aq-pass-wrap input { padding-right: 40px; }
+    #aq-pass-toggle {
+      position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+      width: 32px !important; height: 28px; margin-top: -14px !important;
+      background: none !important; border: none; padding: 0 !important;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: .7;
+    }
+    #aq-pass-toggle:hover { opacity: 1; }
+    #aq-pass-toggle svg { width: 18px; height: 18px; }
+    #aq-forgot-link {
+      background: none !important; width: auto !important; padding: 0 !important;
+      color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
+      text-decoration: underline; cursor: pointer; margin: 8px 0 0 !important;
+      display: block; text-align: right;
+    }
+    #aq-forgot-link:hover { color: #cbd5e1 !important; }
     #aq-auth-card button {
       width: 100%; padding: 10px 12px; border-radius: 8px; border: none;
       background: #0ea5e9; color: white; font-size: 14px; font-weight: 600;
@@ -106,7 +124,16 @@
         <h1 id="aq-auth-title">เข้าสู่ระบบ</h1>
         <p class="sub" id="aq-auth-sub">ล็อกอินเพื่อซิงก์ข้อมูลตู้ปลาข้ามอุปกรณ์</p>
         <input id="aq-auth-email" type="email" placeholder="อีเมล" autocomplete="email" />
-        <input id="aq-auth-password" type="password" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัว)" autocomplete="current-password" />
+        <div id="aq-pass-wrap">
+          <input id="aq-auth-password" type="password" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัว)" autocomplete="current-password" />
+          <button id="aq-pass-toggle" type="button" title="แสดง/ซ่อนรหัสผ่าน" aria-label="แสดง/ซ่อนรหัสผ่าน">
+            <svg id="aq-eye-icon" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+        <button id="aq-forgot-link" type="button">ลืมรหัสผ่าน?</button>
         <button id="aq-auth-submit">เข้าสู่ระบบ</button>
         <button id="aq-auth-toggle" type="button">ยังไม่มีบัญชี? สมัครสมาชิก</button>
         <div id="aq-auth-msg"></div>
@@ -118,12 +145,41 @@
     const sub = overlay.querySelector('#aq-auth-sub');
     const emailEl = overlay.querySelector('#aq-auth-email');
     const passEl = overlay.querySelector('#aq-auth-password');
+    const passWrap = overlay.querySelector('#aq-pass-wrap');
+    const passToggle = overlay.querySelector('#aq-pass-toggle');
+    const eyeIcon = overlay.querySelector('#aq-eye-icon');
+    const forgotLink = overlay.querySelector('#aq-forgot-link');
     const submitBtn = overlay.querySelector('#aq-auth-submit');
     const toggleBtn = overlay.querySelector('#aq-auth-toggle');
     const msgEl = overlay.querySelector('#aq-auth-msg');
 
+    const EYE_OPEN = '<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/>';
+    const EYE_CLOSED = '<path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.06 21.06 0 0 1 5.06-6.06M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a21.06 21.06 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/>';
+
+    passToggle.addEventListener('click', () => {
+      const showing = passEl.type === 'text';
+      passEl.type = showing ? 'password' : 'text';
+      eyeIcon.innerHTML = showing ? EYE_OPEN : EYE_CLOSED;
+    });
+
     function setMode(next) {
       mode = next;
+      msgEl.textContent = '';
+      msgEl.className = '';
+
+      if (mode === 'forgot') {
+        title.textContent = 'ลืมรหัสผ่าน';
+        sub.textContent = 'กรอกอีเมลที่ใช้สมัคร เราจะส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ให้';
+        passWrap.style.display = 'none';
+        forgotLink.style.display = 'none';
+        submitBtn.textContent = 'ส่งลิงก์รีเซ็ตรหัสผ่าน';
+        toggleBtn.textContent = 'กลับไปเข้าสู่ระบบ';
+        return;
+      }
+
+      passWrap.style.display = '';
+      forgotLink.style.display = mode === 'signin' ? 'block' : 'none';
+
       if (mode === 'signup') {
         title.textContent = 'สมัครสมาชิก';
         sub.textContent = 'สร้างบัญชีเพื่อเริ่มซิงก์ข้อมูลข้ามอุปกรณ์';
@@ -137,17 +193,42 @@
         toggleBtn.textContent = 'ยังไม่มีบัญชี? สมัครสมาชิก';
         passEl.setAttribute('autocomplete', 'current-password');
       }
-      msgEl.textContent = '';
-      msgEl.className = '';
     }
 
-    toggleBtn.addEventListener('click', () => setMode(mode === 'signin' ? 'signup' : 'signin'));
+    toggleBtn.addEventListener('click', () => {
+      if (mode === 'forgot') { setMode('signin'); return; }
+      setMode(mode === 'signin' ? 'signup' : 'signin');
+    });
+    forgotLink.addEventListener('click', () => setMode('forgot'));
 
     async function submit() {
       const email = emailEl.value.trim();
       const password = passEl.value;
       msgEl.textContent = '';
       msgEl.className = '';
+
+      if (mode === 'forgot') {
+        if (!email) {
+          msgEl.textContent = 'กรอกอีเมลก่อน';
+          msgEl.className = 'err';
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'กำลังส่ง...';
+        try {
+          await AquariumAuth.resetPassword(email);
+          msgEl.textContent = 'ส่งลิงก์รีเซ็ตรหัสผ่านไปที่อีเมลแล้ว กรุณาเช็คกล่องจดหมาย (รวมถึง spam)';
+          msgEl.className = 'ok';
+          submitBtn.textContent = 'ส่งอีกครั้ง';
+          submitBtn.disabled = false;
+        } catch (err) {
+          msgEl.textContent = translateAuthError(err);
+          msgEl.className = 'err';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'ส่งลิงก์รีเซ็ตรหัสผ่าน';
+        }
+        return;
+      }
 
       if (!email || !password) {
         msgEl.textContent = 'กรอกอีเมลและรหัสผ่านให้ครบ';

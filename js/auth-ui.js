@@ -48,13 +48,22 @@
     return;
   }
 
+  /* ------------------------------------------------------------
+     Styles - one shared font-family rule covers every input/
+     button/placeholder across the login card AND the account
+     badge, so it's declared once here instead of repeated per
+     element further down.
+     ------------------------------------------------------------ */
+  const FONT_STACK = "'Prompt', system-ui, -apple-system, 'Segoe UI', sans-serif";
+
   const style = document.createElement('style');
   style.textContent = `
+    /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {
       position: fixed; inset: 0; z-index: 99999;
       background: #0f172a; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: ${FONT_STACK};
     }
     #aq-auth-card {
       width: 100%; max-width: 400px; background: #1e293b;
@@ -63,30 +72,38 @@
     }
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
     #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 20px; }
+
+    /* ---- Shared font-family for all form elements ---- */
     #aq-auth-card input,
     #aq-auth-card button,
     #aq-auth-card input::placeholder,
     #aq-account-badge,
     #aq-account-badge button {
-      font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: ${FONT_STACK};
     }
+
+    /* ---- Text inputs ---- */
     #aq-auth-card input {
       width: 100%; box-sizing: border-box; padding: 10px 12px; margin-bottom: 10px;
       border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #f1f5f9;
       font-size: 14px;
     }
     #aq-auth-card input:focus { outline: none; border-color: #38bdf8; }
+
+    /* ---- Password field + show/hide eye toggle ---- */
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
       position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-      width: 32px !important; height: 28px;
+      width: 32px !important; height: 28px; margin: 0 !important;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: .7; margin: 0 !important;
+      cursor: pointer; opacity: .7;
     }
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }
+
+    /* ---- Forgot-password link (right-aligned, needs full width first) ---- */
     #aq-forgot-link {
       background: none !important; width: 100% !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
@@ -94,23 +111,32 @@
       display: block; text-align: right !important;
     }
     #aq-forgot-link:hover { color: #cbd5e1 !important; }
+
+    /* ---- Buttons ---- */
     #aq-auth-card button {
       width: 100%; padding: 10px 12px; border-radius: 8px; border: none;
       background: #0ea5e9; color: white; font-size: 14px; font-weight: 600;
-      cursor: pointer; margin-top: 20px;
+      cursor: pointer; margin-top: 4px;
     }
     #aq-auth-card button:hover { background: #0284c7; }
     #aq-auth-card button:disabled { opacity: .6; cursor: default; }
+    #aq-auth-submit {
+      margin-top: 20px !important; /* ยิ่งค่ามาก ยิ่งเลื่อนลงมากขึ้น */
+    }
     #aq-auth-toggle {
       background: none !important; color: #38bdf8 !important; font-weight: 500 !important;
       margin-top: 12px; padding: 4px !important;
     }
+
+    /* ---- Status message ---- */
     #aq-auth-msg { font-size: 13px; margin-top: 10px; min-height: 16px; }
     #aq-auth-msg.err { color: #f87171; }
     #aq-auth-msg.ok { color: #4ade80; }
+
+    /* ---- Account badge (top-right, shown once logged in) ---- */
     #aq-account-badge {
       position: fixed; top: 10px; right: 10px; z-index: 9998;
-      background: #1e293b; color: #cbd5e1; font-family: 'Prompt', system-ui, sans-serif;
+      background: #1e293b; color: #cbd5e1;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
@@ -121,7 +147,7 @@
   `;
   document.head.appendChild(style);
 
-  let mode = 'signin'; // or 'signup'
+  let mode = 'signin'; // 'signin' | 'signup' | 'forgot'
 
   function buildOverlay() {
     const overlay = document.createElement('div');

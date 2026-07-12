@@ -71,12 +71,12 @@
     #aq-auth-logo span b { color: #22d3ee; font-weight: 800; }
 
     @media (max-width: 390px) {
-      #aq-auth-logo {
-        font-size: 20px;
+      #aq-auth-logo span {
+        font-size: 10px;
       }
       #aq-auth-card {
         padding: 10px 10px;
-        display: flex; align-items: center; justify-content: center;
+        margin: 10px 10px;
       }
     }
     

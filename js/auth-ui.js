@@ -66,13 +66,19 @@
       text-align: center;
     }
     #aq-auth-logo span {
-      font-size: 60px; font-weight: 800; color: #e9f2f6; letter-spacing: .2px;
+      font-size: 60px; font-weight: 400; color: #e9f2f6; letter-spacing: .2px;
     }
-    #aq-auth-logo span b { color: #22d3ee; font-weight: 400; }
+    #aq-auth-logo span b { color: #22d3ee; font-weight: 800; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 390px) {
       #aq-auth-logo {
-        width: 120px; /* ⬅️ ปรับความกว้างในมือถือตามใจชอบได้ที่นี่เลยครับ */
+        width: 120px; /*ปรับความกว้างในมือถือ*/
+      }
+      #aq-auth-overlay {
+        width: 120px;
+      }
+      #aq-auth-card {
+        width: 120px;
       }
     }
 

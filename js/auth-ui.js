@@ -97,6 +97,8 @@
     
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
     #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 14px; }
+    #aq-auth-card sub { text-align: center; }
+    #aq-auth-card title { text-align: center; }
 
     /* ---- Shared font-family for all form elements ---- */
     #aq-auth-card input,

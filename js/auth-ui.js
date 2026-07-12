@@ -97,7 +97,7 @@
     #aq-auth-card button {
       width: 100%; padding: 10px 12px; border-radius: 8px; border: none;
       background: #0ea5e9; color: white; font-size: 14px; font-weight: 600;
-      cursor: pointer; margin-top: 4px;
+      cursor: pointer; margin-top: 8px;
     }
     #aq-auth-card button:hover { background: #0284c7; }
     #aq-auth-card button:disabled { opacity: .6; cursor: default; }

@@ -131,7 +131,7 @@ body {
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);
   position: fixed;
-  top: 60;
+  top: 0;
   left: 0;
   right: 0;
   width: 100%;

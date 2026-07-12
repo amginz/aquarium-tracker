@@ -76,7 +76,7 @@
       width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: .7; margin: 1px 0 0 !important;
+      cursor: pointer; opacity: .7;
     }
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }

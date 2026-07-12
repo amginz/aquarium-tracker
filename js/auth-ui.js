@@ -83,7 +83,7 @@
     #aq-forgot-link {
       background: none !important; width: 100% !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
-      text-decoration: underline; cursor: pointer; margin: 8px 0 0 !important;
+      text-decoration: underline; cursor: pointer; margin: 8px 8px 0 !important;
       display: block; text-align: right !important;
     }
     #aq-forgot-link:hover { color: #cbd5e1 !important; }

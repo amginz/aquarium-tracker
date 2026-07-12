@@ -16,6 +16,6 @@
    app expects, and README.md for the full setup walkthrough.
    ============================================================ */
 const SUPABASE_CONFIG = {
-  url: '',      // e.g. 'https://mszgtrxtzzzsidtasajt.supabase.co'
-  anonKey: ''   // e.g. 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zemd0cnh0enp6c2lkdGFzYWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NDI3NTcsImV4cCI6MjA5OTQxODc1N30.GStkA_8jcfFvtgf70XN28QVaj0R2HuN27lEQj3dMROE'
+  url: 'https://mszgtrxtzzzsidtasajt.supabase.co',      // e.g. 'https://mszgtrxtzzzsidtasajt.supabase.co'
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zemd0cnh0enp6c2lkdGFzYWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NDI3NTcsImV4cCI6MjA5OTQxODc1N30.GStkA_8jcfFvtgf70XN28QVaj0R2HuN27lEQj3dMROE'   // e.g. ''
 };

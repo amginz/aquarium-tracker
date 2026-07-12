@@ -72,7 +72,7 @@ async function saveState() {
     if (supabaseConfigured && await initSupabase()) {
       const { error } = await supabaseClient
         .from('aquarium_state')
-        .upsert({ user_id: supabaseUserId, data: payload, updated_at: new Date().toISOString() });
+        .upsert({ user_id: supabaseUserId, state: payload, updated_at: new Date().toISOString() });
       if (error) throw error;
       return true;
     }
@@ -95,11 +95,11 @@ async function loadState() {
     if (supabaseConfigured && await initSupabase()) {
       const { data, error } = await supabaseClient
         .from('aquarium_state')
-        .select('data')
+        .select('state')
         .eq('user_id', supabaseUserId)
         .maybeSingle();
       if (error) throw error;
-      if (data) saved = data.data;
+      if (data) saved = data.state;
     } else if (hasArtifactStorage) {
       const res = await window.storage.get(STORAGE_KEY, false);
       saved = res ? JSON.parse(res.value) : null;

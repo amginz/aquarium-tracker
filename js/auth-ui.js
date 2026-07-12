@@ -72,11 +72,11 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
-      width: 32px !important; height: 28px; margin-top: -14px !important;
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: .7;
+      cursor: pointer; opacity: .7; margin: 0 !important;
     }
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }

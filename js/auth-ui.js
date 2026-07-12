@@ -103,7 +103,7 @@
     #aq-auth-msg.ok { color: #4ade80; }
     #aq-account-badge {
       position: fixed; top: 10px; right: 10px; z-index: 9998;
-      background: #1e293b; color: #cbd5e1; font-family: 'Prompt', system-ui, sans-serif;
+      background: #1e293b; color: #cbd5e1; font-family: 'Prompt';
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }

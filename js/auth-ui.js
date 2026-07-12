@@ -70,6 +70,15 @@
       border-radius: 16px; padding: 28px 30px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
       color: #e2e8f0;
     }
+    #aq-auth-logo {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+    }
+    #aq-auth-logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+    #aq-auth-logo span {
+      font-size: 20px; font-weight: 500; color: #e2e8f0; letter-spacing: .2px;
+    }
+    #aq-auth-logo span b { color: #38bdf8; font-weight: 700; }
+
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
     #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 14px; }
 
@@ -161,6 +170,15 @@
     overlay.id = 'aq-auth-overlay';
     overlay.innerHTML = `
       <div id="aq-auth-card">
+         <div id="aq-auth-logo">
+             <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M6.5 12c0-3 3-6 8-6 3.5 0 6 2.5 7 6-1 3.5-3.5 6-7 6-5 0-8-3-8-6Z"/>
+             <path d="M6.5 12c-1.5-1-3-1-4.5 0 1.5 1 3 1 4.5 0Z"/>
+             <circle cx="16" cy="10.3" r=".6" fill="#38bdf8" stroke="none"/>
+             <path d="M13 7.5c.8-1.2 2-2 3.5-2M13 16.5c.8 1.2 2 2 3.5 2"/>
+             </svg>
+           <span>Aqua<b>Track</b></span>
+          </div>
         <h1 id="aq-auth-title">เข้าสู่ระบบ</h1>
         <p class="sub" id="aq-auth-sub">ล็อกอินเพื่อซิงก์ข้อมูลตู้ปลาข้ามอุปกรณ์</p>
         <input id="aq-auth-email" type="email" placeholder="อีเมล" autocomplete="email" />

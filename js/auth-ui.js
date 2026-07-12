@@ -54,7 +54,7 @@
       position: fixed; inset: 0; z-index: 99999;
       background: #0f172a;
       display: flex; align-items: center; justify-content: center;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: 'Prompt', system-ui, -apple-system, "Segoe UI", sans-serif;
     }
     #aq-auth-card {
       width: 100%; max-width: 340px; background: #1e293b;
@@ -72,18 +72,18 @@
     #aq-pass-wrap { position: relative; }
     #aq-pass-wrap input { padding-right: 40px; }
     #aq-pass-toggle {
-      position: absolute; right: 6px; top: 50%;
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
       width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
-      display: flex; justify-content: center;
-      cursor: pointer; opacity: .7;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: .7; margin: 0 !important;
     }
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }
     #aq-forgot-link {
       background: none !important; width: 100% !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
-      text-decoration: underline; cursor: pointer; margin: 0 0 2px !important;
+      text-decoration: underline; cursor: pointer; margin: 8px 0 0 !important;
       display: block; text-align: right !important;
     }
     #aq-forgot-link:hover { color: #cbd5e1 !important; }
@@ -103,7 +103,7 @@
     #aq-auth-msg.ok { color: #4ade80; }
     #aq-account-badge {
       position: fixed; top: 10px; right: 10px; z-index: 9998;
-      background: #1e293b; color: #cbd5e1; font-family: system-ui, sans-serif;
+      background: #1e293b; color: #cbd5e1; font-family: 'Prompt', system-ui, sans-serif;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }

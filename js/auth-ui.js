@@ -135,18 +135,11 @@
 
     /* ---- Account badge (top-right, shown once logged in) ---- */
     #aq-account-badge {
-      position: fixed; top: 10px; right: 10px; z-index: 9998;
+      position: fixed; z-index: 9998;
+      bottom: 90px;
       background: #1e293b; color: #cbd5e1;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-  }@media (max-width: 480px) {
-    #aq-account-badge {
-       top: auto;
-       bottom: 72px; /* เผื่อพ้น save-bar (padding 1rem บน-ล่าง + ปุ่มบันทึก) + ระยะห่างเล็กน้อย */
-       right: 8px;
-       font-size: 11px;
-       padding: 5px 8px;
-  }
 }
     #aq-account-badge button {
       background: none; border: none; color: #38bdf8; font-size: 12px;

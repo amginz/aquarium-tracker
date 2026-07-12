@@ -76,7 +76,7 @@
         top: 25px;
       }
       #aq-auth-card {
-        margin: 40px 40px;
+        margin-top: 90px;
       }
     }
     

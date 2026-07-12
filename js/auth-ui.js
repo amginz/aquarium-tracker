@@ -76,7 +76,7 @@
       width: 32px !important; height: 28px;
       background: none !important; border: none; padding: 0 !important;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: .7; margin: 0 !important;
+      cursor: pointer; opacity: .7; margin: 0 !important; right: 6px !important;
     }
     #aq-pass-toggle:hover { opacity: 1; }
     #aq-pass-toggle svg { width: 18px; height: 18px; }
@@ -84,7 +84,7 @@
       background: none !important; width: auto !important; padding: 0 !important;
       color: #94a3b8 !important; font-size: 12px !important; font-weight: 400 !important;
       text-decoration: underline; cursor: pointer; margin: 8px 0 0 !important;
-      display: block; text-align: right;
+      display: block; text-align: right !important;
     }
     #aq-forgot-link:hover { color: #cbd5e1 !important; }
     #aq-auth-card button {

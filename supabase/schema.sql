@@ -31,11 +31,15 @@ create policy "Users manage their own aquarium state"
 
 -- ============================================================
 -- Auth setup (do this in the Dashboard, not SQL):
--- Authentication -> Providers -> Anonymous Sign-ins -> Enable.
--- The app signs each visitor in anonymously (no email/password)
--- so their data follows them across sessions on the same browser.
--- If you want real accounts (login on any device), you can swap
--- signInAnonymously() in js/storage.js for Supabase's email/OAuth
--- sign-in methods instead - the table/policies above already
--- support that with no changes.
+-- 1. Authentication -> Providers -> Email -> Enable.
+-- 2. (Optional, recommended for a quick start) Authentication ->
+--    Providers -> Email -> turn OFF "Confirm email", so new
+--    sign-ups can log in immediately without checking their inbox.
+--    Turn it back ON later if you want stronger verification.
+--
+-- The app now signs each visitor in with a real email + password
+-- account (see js/auth-ui.js), which is what lets the SAME data
+-- follow them across devices - log in with the same email/password
+-- on your phone and your computer and you'll see the same tanks.
+-- The table/policies above already support this with no changes.
 -- ============================================================

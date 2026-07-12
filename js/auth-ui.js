@@ -137,7 +137,7 @@
     #aq-account-badge {
       position: fixed; z-index: 9998;
       top: auto;
-      bottom: 14px; /* จัดกึ่งกลางแนวตั้งในแถบ save-bar (padding 1rem บน-ล่าง) */
+      bottom: 20px; /* จัดกึ่งกลางแนวตั้งในแถบ save-bar (padding 1rem บน-ล่าง) */
       left: 12px;
       right: auto;
       background: #1e293b; color: #cbd5e1;

@@ -66,8 +66,8 @@
       font-family: ${FONT_STACK};
     }
     #aq-auth-card {
-      width: 100%; max-width: 400px; height: 200px; background: #1e293b;
-      border-radius: 16px; padding: 28px 20px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      width: 100%; max-width: 400px; background: #1e293b;
+      border-radius: 16px; padding-top: 20px; padding-bottom: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
       color: #e2e8f0;
     }
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }

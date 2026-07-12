@@ -25,10 +25,6 @@
   margin: 0;
   padding: 0;
 }
-body {
-  margin: 0;
-  padding: 0;
-}
 :root {
   --bg: #080e15;
   --bg1: #0e1620;
@@ -74,7 +70,7 @@ body {
 .app-wrap {
   max-width: 960px;
   margin: 0 auto;
-  margin-top: 60px;
+  padding-top: 60px;
   overflow-x: hidden;
 }
 

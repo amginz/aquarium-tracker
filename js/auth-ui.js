@@ -135,7 +135,7 @@
 
     /* ---- Account badge (top-right, shown once logged in) ---- */
     #aq-account-badge {
-      position: fixed; top: 24px; right: 20px; z-index: 9998;
+      position: fixed; z-index: 9998; bottom: 70px;
       background: #1e293b; color: #cbd5e1;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
@@ -143,7 +143,6 @@
       #aq-account-badge {
       top: auto;      /* ← ตำแหน่งบนสุด บนมือถือ */
       right: 8px;    /* ← ตำแหน่งขวาสุด บนมือถือ */
-      bottom: 70px;
       font-size: 11px;
       padding: 5px 8px;
   }

@@ -76,9 +76,7 @@
         top: 25px;
       }
       #aq-auth-card {
-        padding: 40px 40px;
         margin: 40px 40px;
-        top: 100px;
       }
     }
     

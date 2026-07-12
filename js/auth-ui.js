@@ -73,10 +73,12 @@
     @media (max-width: 390px) {
       #aq-auth-logo span {
         font-size: 40px;
-        top: 25px;
+        top: 20px;
       }
       #aq-auth-card {
         margin-top: 90px;
+        margin-left: 20px;
+        margin-right: 20px;
       }
     }
     

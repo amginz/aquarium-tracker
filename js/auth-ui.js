@@ -64,11 +64,18 @@
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
-   }
+    }
     #aq-auth-logo span {
       font-size: 60px; font-weight: 800; color: #e9f2f6; letter-spacing: .2px;
-   }
-#aq-auth-logo span b { color: #22d3ee; font-weight: 400; }
+    }
+    #aq-auth-logo span b { color: #22d3ee; font-weight: 400; }
+
+    @media (max-width: 768px) {
+      #aq-auth-logo {
+        width: 120px; /* ⬅️ ปรับความกว้างในมือถือตามใจชอบได้ที่นี่เลยครับ */
+      }
+    }
+
     
     /* ---- Overlay + card shell ---- */
     #aq-auth-overlay {
@@ -83,7 +90,6 @@
       color: #e2e8f0;
     }
     
-
     #aq-auth-card h1 { font-size: 22px; margin: 0 0 4px; color: #f8fafc; }
     #aq-auth-card p.sub { font-size: 16px; color: #94a3b8; margin: 0 0 14px; }
 

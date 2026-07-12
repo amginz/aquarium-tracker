@@ -1,0 +1,239 @@
+/* ============================================================
+   AUTH UI
+   ------------------------------------------------------------
+   Self-contained login / sign-up screen. Include this AFTER
+   supabase-config.js and storage.js:
+
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+     <script src="js/supabase-config.js"></script>
+     <script src="js/storage.js"></script>
+     <script src="js/auth-ui.js"></script>
+
+   Behavior:
+   - If Supabase isn't configured (blank url/anonKey), this does
+     nothing - app runs exactly as before, local-only.
+   - If configured, it shows a full-screen overlay with an
+     email + password form (sign in / sign up) until the visitor
+     is authenticated. Once signed in, the overlay disappears and
+     the event 'aquarium-auth-ready' fires on window.
+
+   IMPORTANT - wiring this into your app's startup:
+   Your existing bootstrap code probably does something like:
+
+       loadState().then(render);
+
+   on page load. Change that to wait for auth first, so it doesn't
+   load/render before we know who's logged in:
+
+       window.addEventListener('aquarium-auth-ready', () => {
+         loadState().then(render);
+       });
+
+   If Supabase isn't configured, 'aquarium-auth-ready' fires
+   immediately (nothing to wait for), so this is safe either way.
+   A small account badge (email + "ออกจากระบบ") is also injected
+   in the top-right corner once logged in, so users can log out.
+   ============================================================ */
+(function () {
+  if (typeof window === 'undefined') return;
+
+  function fireReady() {
+    window.dispatchEvent(new CustomEvent('aquarium-auth-ready'));
+  }
+
+  // Nothing to do if Supabase isn't set up - app stays local-only.
+  if (typeof AquariumAuth === 'undefined' || !AquariumAuth.isAvailable()) {
+    fireReady();
+    return;
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #aq-auth-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #0f172a;
+      display: flex; align-items: center; justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    #aq-auth-card {
+      width: 100%; max-width: 340px; background: #1e293b;
+      border-radius: 16px; padding: 28px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      color: #e2e8f0;
+    }
+    #aq-auth-card h1 { font-size: 18px; margin: 0 0 4px; color: #f8fafc; }
+    #aq-auth-card p.sub { font-size: 13px; color: #94a3b8; margin: 0 0 20px; }
+    #aq-auth-card input {
+      width: 100%; box-sizing: border-box; padding: 10px 12px; margin-bottom: 10px;
+      border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #f1f5f9;
+      font-size: 14px;
+    }
+    #aq-auth-card input:focus { outline: none; border-color: #38bdf8; }
+    #aq-auth-card button {
+      width: 100%; padding: 10px 12px; border-radius: 8px; border: none;
+      background: #0ea5e9; color: white; font-size: 14px; font-weight: 600;
+      cursor: pointer; margin-top: 4px;
+    }
+    #aq-auth-card button:hover { background: #0284c7; }
+    #aq-auth-card button:disabled { opacity: .6; cursor: default; }
+    #aq-auth-toggle {
+      background: none !important; color: #38bdf8 !important; font-weight: 500 !important;
+      margin-top: 12px; padding: 4px !important;
+    }
+    #aq-auth-msg { font-size: 13px; margin-top: 10px; min-height: 16px; }
+    #aq-auth-msg.err { color: #f87171; }
+    #aq-auth-msg.ok { color: #4ade80; }
+    #aq-account-badge {
+      position: fixed; top: 10px; right: 10px; z-index: 9998;
+      background: #1e293b; color: #cbd5e1; font-family: system-ui, sans-serif;
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
+      display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    #aq-account-badge button {
+      background: none; border: none; color: #38bdf8; font-size: 12px;
+      cursor: pointer; padding: 0; font-weight: 600;
+    }
+  `;
+  document.head.appendChild(style);
+
+  let mode = 'signin'; // or 'signup'
+
+  function buildOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'aq-auth-overlay';
+    overlay.innerHTML = `
+      <div id="aq-auth-card">
+        <h1 id="aq-auth-title">เข้าสู่ระบบ</h1>
+        <p class="sub" id="aq-auth-sub">ล็อกอินเพื่อซิงก์ข้อมูลตู้ปลาข้ามอุปกรณ์</p>
+        <input id="aq-auth-email" type="email" placeholder="อีเมล" autocomplete="email" />
+        <input id="aq-auth-password" type="password" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัว)" autocomplete="current-password" />
+        <button id="aq-auth-submit">เข้าสู่ระบบ</button>
+        <button id="aq-auth-toggle" type="button">ยังไม่มีบัญชี? สมัครสมาชิก</button>
+        <div id="aq-auth-msg"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const title = overlay.querySelector('#aq-auth-title');
+    const sub = overlay.querySelector('#aq-auth-sub');
+    const emailEl = overlay.querySelector('#aq-auth-email');
+    const passEl = overlay.querySelector('#aq-auth-password');
+    const submitBtn = overlay.querySelector('#aq-auth-submit');
+    const toggleBtn = overlay.querySelector('#aq-auth-toggle');
+    const msgEl = overlay.querySelector('#aq-auth-msg');
+
+    function setMode(next) {
+      mode = next;
+      if (mode === 'signup') {
+        title.textContent = 'สมัครสมาชิก';
+        sub.textContent = 'สร้างบัญชีเพื่อเริ่มซิงก์ข้อมูลข้ามอุปกรณ์';
+        submitBtn.textContent = 'สมัครสมาชิก';
+        toggleBtn.textContent = 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ';
+        passEl.setAttribute('autocomplete', 'new-password');
+      } else {
+        title.textContent = 'เข้าสู่ระบบ';
+        sub.textContent = 'ล็อกอินเพื่อซิงก์ข้อมูลตู้ปลาข้ามอุปกรณ์';
+        submitBtn.textContent = 'เข้าสู่ระบบ';
+        toggleBtn.textContent = 'ยังไม่มีบัญชี? สมัครสมาชิก';
+        passEl.setAttribute('autocomplete', 'current-password');
+      }
+      msgEl.textContent = '';
+      msgEl.className = '';
+    }
+
+    toggleBtn.addEventListener('click', () => setMode(mode === 'signin' ? 'signup' : 'signin'));
+
+    async function submit() {
+      const email = emailEl.value.trim();
+      const password = passEl.value;
+      msgEl.textContent = '';
+      msgEl.className = '';
+
+      if (!email || !password) {
+        msgEl.textContent = 'กรอกอีเมลและรหัสผ่านให้ครบ';
+        msgEl.className = 'err';
+        return;
+      }
+      if (password.length < 6) {
+        msgEl.textContent = 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร';
+        msgEl.className = 'err';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = mode === 'signup' ? 'กำลังสมัคร...' : 'กำลังเข้าสู่ระบบ...';
+
+      try {
+        if (mode === 'signup') {
+          const data = await AquariumAuth.signUp(email, password);
+          if (!data.session) {
+            // Email confirmation is required by the project's settings.
+            msgEl.textContent = 'สมัครสำเร็จ! กรุณายืนยันอีเมลของคุณก่อนเข้าสู่ระบบ';
+            msgEl.className = 'ok';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'สมัครสมาชิก';
+            return;
+          }
+          // Session came back immediately (email confirmation disabled) -
+          // onAuthStateChange will fire and close this overlay.
+        } else {
+          await AquariumAuth.signIn(email, password);
+        }
+      } catch (err) {
+        msgEl.textContent = translateAuthError(err);
+        msgEl.className = 'err';
+        submitBtn.disabled = false;
+        submitBtn.textContent = mode === 'signup' ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+      }
+    }
+
+    submitBtn.addEventListener('click', submit);
+    [emailEl, passEl].forEach(el => el.addEventListener('keydown', e => {
+      if (e.key === 'Enter') submit();
+    }));
+
+    setMode('signin');
+    return overlay;
+  }
+
+  function translateAuthError(err) {
+    const m = (err && err.message) || '';
+    if (/already registered/i.test(m)) return 'อีเมลนี้ถูกใช้สมัครแล้ว ลองเข้าสู่ระบบแทน';
+    if (/invalid login credentials/i.test(m)) return 'อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+    if (/email not confirmed/i.test(m)) return 'กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ';
+    return m || 'เกิดข้อผิดพลาด ลองใหม่อีกครั้ง';
+  }
+
+  function buildBadge(user) {
+    const badge = document.createElement('div');
+    badge.id = 'aq-account-badge';
+    badge.innerHTML = `<span>${user.email}</span><button id="aq-account-logout">ออกจากระบบ</button>`;
+    document.body.appendChild(badge);
+    badge.querySelector('#aq-account-logout').addEventListener('click', async () => {
+      await AquariumAuth.signOut();
+      // Reload so the app re-initializes cleanly against local storage /
+      // the next login, instead of leaving stale synced data on screen.
+      location.reload();
+    });
+  }
+
+  let firedOnce = false;
+  let overlayEl = null;
+
+  AquariumAuth.onChange((user) => {
+    const existingBadge = document.getElementById('aq-account-badge');
+    if (existingBadge) existingBadge.remove();
+
+    if (user) {
+      if (overlayEl) { overlayEl.remove(); overlayEl = null; }
+      buildBadge(user);
+      if (!firedOnce) { firedOnce = true; fireReady(); }
+    } else {
+      if (!overlayEl) overlayEl = buildOverlay();
+      if (!firedOnce) { firedOnce = true; fireReady(); }
+      // Note: firing 'ready' even when logged out lets the app fall back
+      // to local storage behind the overlay, so nothing hangs forever if
+      // someone never logs in. Once they do log in, saveState()/loadState()
+      // will start using Supabase automatically (see storage.js).
+    }
+  });
+})();

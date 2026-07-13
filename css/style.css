@@ -496,7 +496,7 @@ body {
 
   .field {
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     gap: 5px;
   }
 

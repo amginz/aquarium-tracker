@@ -605,11 +605,6 @@ body {
   .calc-grid {
     grid-template-columns: 1fr;
   }
-
-  .field input[type=date] {
-    padding: 7px 8px;
-    font-size: 12.5px;
-  }
 }
 
 /* ============================================================

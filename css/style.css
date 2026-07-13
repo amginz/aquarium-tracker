@@ -1171,10 +1171,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   outline: none;
   transition: border-color 0.2s;
   width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
   cursor: pointer;
 }
 

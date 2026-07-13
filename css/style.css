@@ -604,6 +604,15 @@ body {
   .calc-grid {
     grid-template-columns: 1fr;
   }
+  .field input[type=text],
+  .field input[type=date],
+  .field input[type=number],
+  .field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1px 1px;
+    font-size: 13px;
+  }
 }
 
 /* ============================================================

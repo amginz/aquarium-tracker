@@ -428,7 +428,6 @@ body {
   line-height: 1;
   display: flex;
   align-items: left;
-  min-height: 32px; /* เท่ากับ .card-icon */
 }
 
 .card-sub {

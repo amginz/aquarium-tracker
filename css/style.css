@@ -432,7 +432,7 @@ body {
 }
 
 .card-sub {
-  margin-right: auto;
+  margin-left: auto;
   font-family: 'Prompt', sans-serif;
   font-size: 15px;
   color: var(--accent);

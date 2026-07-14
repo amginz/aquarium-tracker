@@ -1562,17 +1562,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .fert-amt-wrap {
-    flex-wrap: nowrap;
-
+    flex-wrap: wrap;
+  }
   .fert-amt {
     width: 34px;
   }
-}
-/* --- Responsive (≤420px): แถวปุ๋ยขึ้นบรรทัดใหม่ --- */
-@media(max-width:420px) {
-  .fert-amt-wrap {
-    flex-wrap: wrap;
- }
 }
 /* ============================================================
    13. SAVE BAR / DELETE TANK

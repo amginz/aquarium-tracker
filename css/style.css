@@ -116,7 +116,7 @@ body {
 
 .main {
   padding: 0rem 1rem 4rem;
-  margin-top: 125px;
+  margin-top: 123px;
   max-width: 900px;
 }
 
@@ -124,7 +124,7 @@ body {
 @media(max-width:600px) {
   .main {
     padding: 0.85rem 0.85rem 2.5rem;
-    margin-top: 105px;
+    margin-top: 115px;
   }
 }
 

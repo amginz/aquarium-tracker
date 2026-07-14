@@ -124,7 +124,7 @@ body {
 @media(max-width:600px) {
   .main {
     padding: 0.85rem 0.85rem 2.5rem;
-    margin-top: 115px;
+    margin-top: 106px;
   }
 }
 
@@ -132,7 +132,7 @@ body {
 @media(max-width:520px) {
   .main {
     padding: 0.85rem 0.85rem 2.5rem;
-    margin-top: 100px;
+    margin-top: 101px;
     margin-bottom: 0px;
   }
 }

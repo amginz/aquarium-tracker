@@ -1500,6 +1500,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .fert-name {
   flex: 1;
   min-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background: transparent;
   border: none;
   outline: none;
@@ -1513,6 +1516,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .fert-amt-wrap {
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1539,9 +1543,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .fert-summary {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: unwrap;
   gap: 6px;
   margin-top: 12px;
+  margin-left: auto;
 }
 
 /* --- Responsive (≤600px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด --- */
@@ -1562,7 +1567,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   .fert-amt-wrap {
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
     gap: 6px;
   }
 

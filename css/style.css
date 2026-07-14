@@ -1570,11 +1570,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
    /* --- Responsive (≤420px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด --- */
 @media(max-width:420px) {
-  .fert-amt-wrap {
-    flex-wrap: wrap;
-  }
   .fert-amt {
-    width: 34px;
+    flex-wrap: nowrap;
   }
 }
 /* ============================================================

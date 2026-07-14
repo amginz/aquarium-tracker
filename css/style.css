@@ -1449,34 +1449,38 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 }
 
-
 /* ============================================================
    12. FERTILIZER SCHEDULE CARD
    ตารางปุ๋ย: วันที่ให้ + ชื่อปุ๋ย + ปริมาณ + หน่วย ต่อแถว
    ============================================================ */
+
+/* --- คอนเทนเนอร์หลัก: เรียงแต่ละแถวปุ๋ยในแนวตั้ง --- */
 .fert-rows {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 8px;             /* ระยะห่างระหว่างแถว */
   margin-bottom: 12px;
 }
 
+/* --- แถวปุ๋ย 1 แถว: วันที่ / ชื่อ / ปริมาณ / หน่วย / ลบ --- */
 .fert-row {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  flex-wrap: wrap;
+  flex-wrap: wrap;                 /* ถ้าจอแคบให้ตกบรรทัดได้ */
   background: var(--bg2);
   border-radius: var(--radius);
-  border: 1px solid transparent;
+  border: 1px solid transparent;   /* เผื่อ state focus ด้านล่าง */
   transition: border-color 0.2s;
 }
 
+/* --- ไฮไลต์ขอบแถว เมื่อมี input/select ภายในถูก focus --- */
 .fert-row:focus-within {
   border-color: var(--border2);
 }
 
+/* --- dropdown วันที่ และ dropdown หน่วย: ใช้สไตล์เดียวกัน --- */
 .fert-day,
 .fert-unit {
   background: var(--bg3);
@@ -1488,21 +1492,22 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   font-family: 'Prompt', sans-serif;
   outline: none;
   cursor: pointer;
-  -webkit-appearance: none;
-  /*flex-shrink: 0;*/
+  -webkit-appearance: none;   /* เอาลูกศร default ของ select ออกบนบางเบราว์เซอร์ */
 }
 
+/* --- ขอบเน้นสี accent เมื่อ dropdown ถูก focus --- */
 .fert-day:focus,
 .fert-unit:focus {
   border-color: var(--accent);
 }
 
+/* --- ช่องกรอกชื่อปุ๋ย: ยืดเต็มพื้นที่ที่เหลือ --- */
 .fert-name {
   flex: 1;
   min-width: 90px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis;   /* ชื่อยาวเกินตัดเป็น ... */
   background: transparent;
   border: none;
   outline: none;
@@ -1510,19 +1515,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   font-size: 15px;
   font-family: 'Prompt', sans-serif;
 }
-
 .fert-name::placeholder {
   color: var(--text3);
 }
 
+/* --- กลุ่มช่องปริมาณ: จัดให้อยู่ชิดกันไม่ตกบรรทัด --- */
 .fert-amt-wrap {
-  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-shrink: 0;
+  flex-shrink: 0;       /* ไม่ให้ตัวเลขถูกบีบจนล้น */
+  white-space: nowrap;
 }
 
+/* --- ช่องกรอกตัวเลขปริมาณ --- */
 .fert-amt {
   width: 44px;
   background: transparent;
@@ -1532,50 +1538,52 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   font-family: 'Prompt', sans-serif;
   font-size: 15px;
   text-align: center;
-  -moz-appearance: textfield;
+  -moz-appearance: textfield;   /* Firefox: เอาปุ่ม +/- ออก */
 }
-
 .fert-amt::-webkit-outer-spin-button,
 .fert-amt::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  -webkit-appearance: none;     /* Chrome/Safari: เอาปุ่ม +/- ออก */
   margin: 0;
 }
 
+/* --- แถวสรุปด้านล่างตาราง (เช่น ปุ่ม "เพิ่มปุ๋ย") --- */
 .fert-summary {
   display: flex;
-  flex-wrap: unwrap;
+  flex-wrap: wrap;      /* แก้จาก "unwrap" (ค่าไม่มีจริงใน CSS) เป็น wrap */
   gap: 6px;
   margin-top: 12px;
   margin-left: auto;
 }
 
-/* --- Responsive (≤600px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด --- */
-@media(max-width:600px) {
+/* ============================================================
+   Responsive (≤600px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด
+   ============================================================ */
+@media (max-width: 600px) {
   .fert-row {
     gap: 6px;
     padding: 8px 10px;
   }
 
+  /* ลดขนาดตัวอักษรทุกช่องบนจอเล็ก */
   .fert-day,
   .fert-unit,
   .fert-name,
   .fert-amt {
-    flex-wrap: nowrap;
     font-size: 13px;
   }
 
   .fert-amt-wrap {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap;   /* กัน "ตัวเลข + หน่วย" ตกบรรทัดกัน */
     gap: 6px;
   }
 
-  .fert-del {
-    flex-shrink: 0;
-  }
-   
   .fert-amt {
-    width: 34px;
+    width: 34px;   /* ช่องปริมาณแคบลงให้พอดีจอ */
+  }
+
+  .fert-del {
+    flex-shrink: 0;   /* ปุ่มลบไม่ถูกบีบหาย */
   }
 }
 /* ============================================================

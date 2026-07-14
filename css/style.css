@@ -1549,7 +1549,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 /* --- แถวสรุปด้านล่างตาราง (เช่น ปุ่ม "เพิ่มปุ๋ย") --- */
 .fert-summary {
   display: flex;
-  flex-wrap: wrap;      /* แก้จาก "unwrap" (ค่าไม่มีจริงใน CSS) เป็น wrap */
+  flex-wrap: nowrap;
   gap: 6px;
   margin-top: 12px;
   margin-left: auto;

@@ -1563,9 +1563,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
   .fert-amt-wrap {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 6px;
-    flex-basis: 100%;
   }
 
   .fert-del {

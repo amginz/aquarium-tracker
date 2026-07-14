@@ -432,7 +432,6 @@ body {
 
 .card-sub {
   margin-left: auto;
-  margin-top: 16px;
   font-family: 'Prompt', sans-serif;
   font-size: 15px;
   color: var(--accent);
@@ -445,7 +444,7 @@ body {
 @media(max-width:600px) {
   .card {
     padding: 0.9rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 5rem;
     border-radius: 12px;
   }
 

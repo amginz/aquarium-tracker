@@ -15,8 +15,9 @@ function fertRow(c, f, i) {
           id="fa-${c}-${i}" oninput="upFert(${c},${i},'amount',+this.value)">
         <button class="count-btn" onclick="chFertAmt(${c},${i},0.5)">+</button>
         <select class="fert-unit" onchange="upFert(${c},${i},'unit',this.value)">${unitOpts}</select>
+        <button class="btn-remove" onclick="rmFert(${c},${i})">×</button>
       </div>
-      <button class="btn-remove" onclick="rmFert(${c},${i})">×</button>
+      
     </div>`;
 }
 

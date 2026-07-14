@@ -1041,16 +1041,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   .light-channels {
     grid-template-columns: 1fr;
   }
-   
-/* --- Responsive (≤420px)*/
- @media(max-width:420px) {
-  .time-row {
-     align-items: center;
-  }
-  .duration-badge {
-     width: 100;
-     align-items: center;
-  }
 }
 /* ============================================================
    9. FILTER CARD + FORM FIELDS

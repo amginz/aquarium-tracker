@@ -1484,7 +1484,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .fert-unit {
   background: var(--bg3);
   border: 1px solid var(--border2);
-  border-radius: 8px;
+  border-radius: 4px;
   color: var(--text);
   padding: 6px 10px;
   font-size: 15px;

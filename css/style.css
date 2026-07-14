@@ -1562,7 +1562,28 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .fert-amt-wrap {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+  }
+  .fert-amt {
+    width: 34px;
+  }
+
+   /* --- Responsive (≤420px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด --- */
+@media(max-width:420px) {
+  .fert-row {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .fert-day,
+  .fert-unit,
+  .fert-name,
+  .fert-amt {
+    font-size: 10px;
+  }
+
+  .fert-amt-wrap {
+    flex-wrap: nowrap;
   }
   .fert-amt {
     width: 34px;

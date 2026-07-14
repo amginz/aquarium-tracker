@@ -466,12 +466,11 @@ body {
   }
 
   .card-title {
-    font-size: 13px;
+    font-size: 25px;
   }
 
   .card-sub {
     font-size: 12px;
-    margin-top: 12px;
   }
 }
 

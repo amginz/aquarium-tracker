@@ -359,7 +359,7 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   animation: fadeUp 0.25s ease both;
 }
 
@@ -444,7 +444,7 @@ body {
 @media(max-width:600px) {
   .card {
     padding: 0.9rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
     border-radius: 12px;
   }
 

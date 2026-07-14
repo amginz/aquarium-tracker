@@ -1468,7 +1468,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  flex-wrap: wrap;                 /* ถ้าจอแคบให้ตกบรรทัดได้ */
+  /*flex-wrap: wrap;*/                 /* ถ้าจอแคบให้ตกบรรทัดได้ */
   background: var(--bg2);
   border-radius: var(--radius);
   border: 1px solid transparent;   /* เผื่อ state focus ด้านล่าง */
@@ -1487,7 +1487,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   border: 1px solid var(--border2);
   border-radius: 8px;
   color: var(--text);
-  padding: 4px 8px;
+  padding: 4px 6px;
   font-size: 15px;
   font-family: 'Prompt', sans-serif;
   outline: none;

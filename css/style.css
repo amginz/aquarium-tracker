@@ -1562,10 +1562,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .fert-amt-wrap {
-    flex-basis: 100%;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 6px;
+    align-items: center;
+    gap: 6px;
+    flex-basis: 100%;
+  }
+
+  .fert-del {
+    flex-shrink: 0;
   }
    
   .fert-amt {

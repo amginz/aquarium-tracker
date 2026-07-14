@@ -1489,7 +1489,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   outline: none;
   cursor: pointer;
   -webkit-appearance: none;
-  flex-shrink: 0;
+  /*flex-shrink: 0;*/
 }
 
 .fert-day:focus,
@@ -1555,6 +1555,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   .fert-unit,
   .fert-name,
   .fert-amt {
+    flex-wrap: nowrap;
     font-size: 13px;
   }
 

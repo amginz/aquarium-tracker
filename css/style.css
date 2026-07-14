@@ -1187,7 +1187,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 12px;
     flex: 0 0 34%;
     margin-bottom: 0;
-    line-height: 0;
+    line-height: 3;
   }
 
   .field input[type=text],

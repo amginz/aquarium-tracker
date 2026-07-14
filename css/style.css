@@ -1035,16 +1035,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     padding: 6px 6px;
     flex-shrink: 0;
   }
-
-  .duration-badge {
-    margin-left: 0;
-    flex-shrink: 0;
-    width: 100%;
-    text-align: center;
-    white-space: nowrap;
-    font-size: 11.5px;
-    padding: 4px 8px;
-  }
 }
 
 /* --- Responsive (≤520px): จอแคบมาก ยุบกริด channel เหลือ 1 คอลัมน์ --- */

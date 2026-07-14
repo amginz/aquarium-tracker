@@ -1066,6 +1066,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   font-family: 'Prompt', sans-serif;
   letter-spacing: 0em;
   text-transform: uppercase;
+  
 }
 
 .field input[type=text],
@@ -1186,7 +1187,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 12px;
     flex: 0 0 34%;
     margin-bottom: 0;
-    line-height: 1.3;
+    line-height: 0;
   }
 
   .field input[type=text],

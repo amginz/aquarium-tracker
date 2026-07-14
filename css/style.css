@@ -1562,16 +1562,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .fert-amt-wrap {
-    flex-wrap: nowrap;
+    flex-basis: 100%;
+    margin-top: 6px;
   }
+   
   .fert-amt {
     width: 34px;
-  }
-
-   /* --- Responsive (≤420px): แถวปุ๋ยแคบลง ตัวเลขไม่ตกบรรทัด --- */
-@media(max-width:420px) {
-  .fert-amt {
-    flex-wrap: nowrap;
   }
 }
 /* ============================================================

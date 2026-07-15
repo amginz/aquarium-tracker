@@ -180,7 +180,7 @@
    }
    
     #aq-account-badge button {
-      background: none; border: none; color: #38bdf8; font-size: 12px;
+      background: none; border: none; color: #ff0000; font-size: 12px;
       cursor: pointer; padding: 0; font-weight: 600;
     }
     

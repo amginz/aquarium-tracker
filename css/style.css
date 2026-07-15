@@ -626,8 +626,7 @@ body {
   .mv-stat {
     padding: 6px 10px;
     font-size: 12.5px;
-    justify-content: space-between;   /* เปลี่ยนจาก flex-start เป็น center */
-    min-width: 0;              /* ให้ป้ายยอมหดตัวพอดีกับช่องกริด ไม่ดันล้น */
+    justify-content: flex-start;   /* เปลี่ยนจาก flex-start เป็น center */
     white-space: normal;       /* ให้ข้อความยาวตัดขึ้นบรรทัดใหม่แทนล้นออกนอกกรอบ */
     text-align: center;
   }

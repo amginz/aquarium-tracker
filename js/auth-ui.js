@@ -166,11 +166,11 @@
       top: 22px;
       bottom: auto; /* จัดกึ่งกลางแนวตั้งในแถบ save-bar (padding 1rem บน-ล่าง) */
       left: auto;
-      right: 2rem;
+      right: 1rem;
       background: #1e293b; color: #cbd5e1;
-      font-size: 10px; padding: 4px 8px; border-radius: 999px;
+      font-size: 15px; padding: 4px 8px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
+    }
     #aq-account-badge button {
       background: none; border: none; color: #38bdf8; font-size: 12px;
       cursor: pointer; padding: 0; font-weight: 600;
@@ -178,6 +178,21 @@
     #aq-auth-card input::placeholder {
       color: #334155;
     }
+
+    /* --- Responsive (≤600px): badge เล็กลง ขยับตำแหน่งให้พอดีจอแคบ --- */
+    @media(max-width:600px) {
+     #aq-account-badge {
+      top: 16px;
+      right: 0.85rem;      /* ให้ตรงกับ padding ของ .main บนมือถือ (0.85rem) */
+      font-size: 10px;
+      padding: 3px 7px;
+      gap: 4px;
+      }
+    #aq-account-badge button {
+      background: none; border: none; color: #38bdf8; font-size: 10px;
+      cursor: pointer; padding: 0; font-weight: 600;
+    }
+   }
   `;
   document.head.appendChild(style);
 

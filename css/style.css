@@ -104,7 +104,7 @@ body {
 
 /* ============================================================
    3. LAYOUT SHELL
-   ตัวห่อหน้าเว็บ (.app-wrap) และพื้นที่เนื้อหาหลัก (.) ที่เว้น
+   ตัวห่อหน้าเว็บ (.app-wrap) และพื้นที่เนื้อหาหลัก (.main) ที่เว้น
    ระยะให้ header/tabs ลอย fixed ด้านบนไม่ทับเนื้อหา
    ============================================================ */
 .app-wrap {
@@ -116,6 +116,7 @@ body {
 
 .main {
   padding: 0rem 1rem 4rem;
+  margin-top: 123px;
   max-width: 900px;
 }
 
@@ -123,6 +124,7 @@ body {
 @media(max-width:600px) {
   .main {
     padding: 0.85rem 0.85rem 2.5rem;
+    margin-top: 103px;
   }
 }
 
@@ -130,6 +132,7 @@ body {
 @media(max-width:520px) {
   .main {
     padding: 0.85rem 0.85rem 2.5rem;
+    margin-top: 102px;
     margin-bottom: 0px;
   }
 }
@@ -144,12 +147,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 101;
-  background: var(--bg);
 }
 
 .logo {
@@ -180,13 +182,12 @@ body {
   gap: 3px;
   flex-wrap: wrap;
   border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 64;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 100;
-  background: var(--bg);
 }
 
 .tank-tab {

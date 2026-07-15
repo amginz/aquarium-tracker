@@ -168,7 +168,7 @@
       left: auto;
       right: 1rem;
       background: #1e293b; color: #cbd5e1;
-      font-size: 15px; padding: 4px 8px; border-radius: 999px;
+      font-size: 12px; padding: 4px 8px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
     #aq-account-badge button {

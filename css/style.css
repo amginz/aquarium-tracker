@@ -1542,7 +1542,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 /* --- ช่องกรอกตัวเลขปริมาณ --- */
 .fert-amt {
-  width: 44px;
+  width: max-content;
   background: transparent;
   border: none;
   outline: none;
@@ -1551,6 +1551,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   font-size: 15px;
   text-align: center;
   -moz-appearance: textfield;   /* Firefox: เอาปุ่ม +/- ออก */
+  margin-right: 0;
 }
 .fert-amt::-webkit-outer-spin-button,
 .fert-amt::-webkit-inner-spin-button {

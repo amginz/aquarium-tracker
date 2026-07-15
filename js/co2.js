@@ -33,7 +33,7 @@ function co2Card(c) {
           <div class="field"><label>สี Drop Checker</label>
             <select onchange="upCo2(${c},'dropChecker',this.value)">${dcOpts}</select></div>
           <div class="field"><label>เติมแก๊สล่าสุด</label>
-            <input type="date" value="${fmtDate(t.lastRefill)}" onchange="upCo2(${c},'lastRefill',this.value)"
+            <input type="date" value="${t.lastRefill}" onchange="upCo2(${c},'lastRefill',this.value)"
               onclick="safeShowPicker(this)"></div>
         </div>
       </div>

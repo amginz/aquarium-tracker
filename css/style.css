@@ -76,7 +76,7 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  padding-bottom: 14px;
+  padding-bottom: 20px;
 }
 
 ::-webkit-scrollbar {

@@ -41,3 +41,10 @@ function calcDur(on, off) {
 function rangePct(value, min, max) {
   return ((value - min) / (max - min)) * 100;
 }
+
+// แปลงวันที่จาก "YYYY-MM-DD" (ค่า input date) เป็น "DD/MM/YYYY" แบบเดียวกันทุกจุด
+function fmtDate(d) {
+  if (!d) return '';
+  const [y, m, day] = d.split('-');
+  return `${day}/${m}/${y}`;
+}

@@ -99,3 +99,4 @@ function renameTank(i, val) {
     const sub = document.querySelector(`#tankinfo-${i} .card-sub`);
     if (sub) sub.textContent = S.tanks[i].name;
   }
+}

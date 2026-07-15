@@ -1201,6 +1201,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 13px;
     text-align: center;
   }
+   
+  .field select {
+    text-align-last: center;
+  }
 
   .filter-item {
     padding: 10px;

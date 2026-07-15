@@ -162,11 +162,11 @@
 
     /* ---- Account badge (top-right, shown once logged in) ---- */
     #aq-account-badge {
-      position: fixed; z-index: 9998;
-      top: auto;
-      bottom: 20px; /* จัดกึ่งกลางแนวตั้งในแถบ save-bar (padding 1rem บน-ล่าง) */
-      left: 12px;
-      right: auto;
+      position: fixed; z-index: 102;
+      top: 22px;
+      bottom: auto; /* จัดกึ่งกลางแนวตั้งในแถบ save-bar (padding 1rem บน-ล่าง) */
+      left: auto;
+      right: 2rem;
       background: #1e293b; color: #cbd5e1;
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);

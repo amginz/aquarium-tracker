@@ -86,9 +86,9 @@ function nxtClean(d, iv) {
   const dt = parseDateInput(d);
   dt.setDate(dt.getDate() + (CLEAN_INTERVAL_DAYS[iv] || 14));
   return dt.toLocaleDateString('th-TH', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit'
   });
 }
 
@@ -101,9 +101,9 @@ function earliestNextClean(c) {
   if (!dates.length) return '';
   const min = new Date(Math.min(...dates));
   return min.toLocaleDateString('th-TH', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit'
   });
 }
 

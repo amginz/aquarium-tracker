@@ -1179,7 +1179,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 @media(max-width:600px) {
   .field {
     flex-direction: row;
-    align-items: left;
+    align-items: center;
     gap: 10px;
   }
 

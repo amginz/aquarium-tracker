@@ -167,18 +167,6 @@ body {
   color: var(--accent);
 }
 
-/* ---- Account badge (top-right, shown once logged in) ---- */
-.aq-account-badge {
-  position: fixed; z-index: 102;   /* ต้องสูงกว่า .header (101) เพื่อไม่ให้โดนบัง */
-  top: 22px;        /* ปรับให้อยู่แนวเดียวกับนาฬิกาในแนวตั้ง */
-  bottom: auto;
-  left: auto;
-  right: 2rem;       /* ชิดขวา ตำแหน่งเดียวกับที่นาฬิกาเคยอยู่ */
-  background: #1e293b; color: #cbd5e1;
-  font-size: 12px; padding: 6px 10px; border-radius: 999px;
-  display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-
 .clock {
   font-family: 'Prompt', sans-serif;
   font-size: 15px;

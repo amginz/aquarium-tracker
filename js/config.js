@@ -18,5 +18,4 @@ const FILTER_CATEGORIES = ['กรองหลัก', 'พรีฟิลเต
 const CO2_DROP_COLORS = ['เขียว (พอดี)', 'เหลือง (แก๊สมากไป)', 'น้ำเงิน (แก๊สน้อยไป)'];
 const TEMP_MIN = 0,
   TEMP_MAX = 40;
-const DEFAULT_DATE = '2026-01-01'; // ค่าเริ่มต้นของช่องวันที่ (1 ม.ค. 2569)
-
+const DEFAULT_DATE = new Date().toISOString().slice(0, 10); // ค่าเริ่มต้นของช่องวันที่ (วันนี้)

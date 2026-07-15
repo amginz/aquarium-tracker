@@ -73,3 +73,18 @@ if (window.__aquariumAuthReady) {
 } else {
   window.addEventListener('aquarium-auth-ready', init, { once: true });
 }
+
+// ===============================
+// ปรับระยะห่างของ main ตามความสูงของ tabs
+// ===============================
+function updateMainOffset() {
+  const header = document.querySelector('.header');
+  const tabs = document.getElementById('tabs-bar');
+  const main = document.querySelector('.main');
+  const h =
+    (header ? header.offsetHeight : 0) +
+    (tabs ? tabs.offsetHeight : 0);
+  main.style.marginTop = h + 'px';
+}
+window.addEventListener('load', updateMainOffset);
+window.addEventListener('resize', updateMainOffset);

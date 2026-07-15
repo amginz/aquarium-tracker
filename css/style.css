@@ -619,7 +619,7 @@ body {
   .mv-stats {
     width: 100%;
     display: grid;
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
   }
 

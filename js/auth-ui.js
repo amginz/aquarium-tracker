@@ -207,7 +207,7 @@
     }
    
     #aq-account-badge button {
-      background: none; border: none; color: #38bdf8; font-size: 10px;
+      background: none; border: none; color: #ff0000; font-size: 10px;
       cursor: pointer; padding: 0; font-weight: 600;
     }
    }
@@ -392,7 +392,7 @@
   function buildBadge(user) {
     const badge = document.createElement('div');
     badge.id = 'aq-account-badge';
-    badge.innerHTML = `<span>${user.email}</span><button id="aq-account-logout" title="ออกจากระบบ">×</button>`;
+    badge.innerHTML = `<span>${user.email}</span><button id="aq-account-logout" title="ออกจากระบบ">X</button>`;
     document.body.appendChild(badge);
     badge.querySelector('#aq-account-logout').addEventListener('click', async () => {
       await AquariumAuth.signOut();

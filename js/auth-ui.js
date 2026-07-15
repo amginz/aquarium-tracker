@@ -192,7 +192,7 @@
     @media(max-width:600px) {
     
     #aq-account-badge {
-      top: 16px;
+      top: 17px;
       right: 0.85rem;      /* ให้ตรงกับ padding ของ .main บนมือถือ (0.85rem) */
       font-size: 10px;
       padding: 3px 7px;

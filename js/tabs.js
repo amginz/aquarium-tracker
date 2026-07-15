@@ -19,6 +19,7 @@ function renderTabs() {
       input.select();
     }
   }
+requestAnimationFrame(updateMainOffset);
 }
 
 function tabButton(t, i) {

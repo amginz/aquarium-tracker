@@ -619,14 +619,14 @@ body {
   .mv-stats {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
     gap: 6px;
   }
 
   .mv-stat {
-    padding: 6px 10px;
+    padding: 10px 10px;
     font-size: 12.5px;
-    justify-content: center;   /* เปลี่ยนจาก flex-start เป็น center */
+    justify-content: Left;   /* เปลี่ยนจาก flex-start เป็น center */
     min-width: 0;              /* ให้ป้ายยอมหดตัวพอดีกับช่องกริด ไม่ดันล้น */
     white-space: normal;       /* ให้ข้อความยาวตัดขึ้นบรรทัดใหม่แทนล้นออกนอกกรอบ */
     text-align: center;

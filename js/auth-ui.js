@@ -183,6 +183,10 @@
       background: none; border: none; color: #ff0000; font-size: 12px;
       cursor: pointer; padding: 0; font-weight: 600;
     }
+
+    #aq-account-badge button svg {
+      width: 16px; height: 16px;
+    }
     
     #aq-auth-card input::placeholder {
       color: #334155;
@@ -209,6 +213,9 @@
     #aq-account-badge button {
       background: none; border: none; color: #ff0000; font-size: 10px;
       cursor: pointer; padding: 0; font-weight: 600;
+    }
+     #aq-account-badge button svg {
+      width: 14px; height: 14px;
     }
    }
   `;
@@ -392,7 +399,13 @@
   function buildBadge(user) {
     const badge = document.createElement('div');
     badge.id = 'aq-account-badge';
-    badge.innerHTML = `<span>${user.email}</span><button id="aq-account-logout" title="ออกจากระบบ">X</button>`;
+    badge.innerHTML = `<span>${user.email}</span><button id="aq-account-logout" title="ออกจากระบบ" aria-label="ออกจากระบบ">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+    <polyline points="16 17 21 12 16 7"/>
+    <line x1="21" y1="12" x2="9" y2="12"/>
+  </svg>
+</button>`;
     document.body.appendChild(badge);
     badge.querySelector('#aq-account-logout').addEventListener('click', async () => {
       await AquariumAuth.signOut();

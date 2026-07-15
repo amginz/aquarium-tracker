@@ -12,6 +12,8 @@ function renderTabs() {
 
   document.getElementById('tabs-bar').innerHTML = tabsHtml + addBtn;
 
+  requestAnimationFrame(updateMainOffset);
+   
   if (editingTab !== null) {
     const input = document.querySelector('#tabs-bar .tab-name-input');
     if (input) {
@@ -99,5 +101,22 @@ function renameTank(i, val) {
     const sub = document.querySelector(`#tankinfo-${i} .card-sub`);
     if (sub) sub.textContent = S.tanks[i].name;
   }
+
+// ===============================
+// ปรับระยะห่างของ main ตามความสูงของ tabs
+// ===============================
+function updateMainOffset() {
+  const header = document.querySelector('.header');
+  const tabs = document.getElementById('tabs-bar');
+  const main = document.querySelector('.main');
+
+  const h =
+    (header ? header.offsetHeight : 0) +
+    (tabs ? tabs.offsetHeight : 0);
+
+  main.style.marginTop = h + 'px';
+  }
+window.addEventListener('load', updateMainOffset);
+window.addEventListener('resize', updateMainOffset);
 }
 

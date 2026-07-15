@@ -626,7 +626,10 @@ body {
   .mv-stat {
     padding: 6px 10px;
     font-size: 12.5px;
-    justify-content: flex-start;
+    justify-content: center;   /* เปลี่ยนจาก flex-start เป็น center */
+    min-width: 0;              /* ให้ป้ายยอมหดตัวพอดีกับช่องกริด ไม่ดันล้น */
+    white-space: normal;       /* ให้ข้อความยาวตัดขึ้นบรรทัดใหม่แทนล้นออกนอกกรอบ */
+    text-align: center;
   }
 }
 
@@ -1330,8 +1333,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   .next-clean {
     font-size: 12.5px;
     padding: 8px 12px;
-    text-align: center;
-    flex-direction: column;
   }
 }
 

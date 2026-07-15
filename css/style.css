@@ -626,9 +626,14 @@ body {
   .mv-stat {
     padding: 6px 10px;
     font-size: 12.5px;
-    justify-content: flex-start;   /* เปลี่ยนจาก flex-start เป็น center */
-    white-space: normal;       /* ให้ข้อความยาวตัดขึ้นบรรทัดใหม่แทนล้นออกนอกกรอบ */
+    justify-content: center;
+    min-width: 0;
+    flex-wrap: wrap;       /* เปิดให้ลูกภายในตกบรรทัดได้ */
     text-align: center;
+   }
+
+  .mv-stat b {
+    flex-basis: 100%;      /* บังคับให้ <b> กินเต็มความกว้าง จึงถูกดันไปบรรทัดใหม่ */
   }
 }
 

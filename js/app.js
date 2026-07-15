@@ -80,7 +80,7 @@ if (window.__aquariumAuthReady) {
 function updateMainOffset() {
   const tabs = document.getElementById('tabs-bar');
   const main = document.querySelector('.main');
-  const h = tabs ? tabs.offsetHeight : 0;
+  const h = (tabs ? tabs.offsetHeight : 0) + 16;
   main.style.marginTop = h + 'px';
 }
 window.addEventListener('load', updateMainOffset);

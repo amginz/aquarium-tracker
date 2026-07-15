@@ -629,7 +629,7 @@ body {
     justify-content: center;
     min-width: 0;
     flex-wrap: wrap;       /* เปิดให้ลูกภายในตกบรรทัดได้ */
-    text-align: center;
+    text-align: left;
    }
 
   .mv-stat b {
